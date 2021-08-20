@@ -11,19 +11,18 @@ const NewExpense = (props) => {
   const saveExpenseDataHandler = (enteredExpenseData) => {
     const expenseData = {
       ...enteredExpenseData,
-      id: Math.random().toString
+      id: 'e'+Math.random().toString
     };
+    console.log('enteredExpenseData - ' + enteredExpenseData.title);
+    console.log('saveExpenseDataHandler - ' + expenseData);
     props.onAddExpense(expenseData);
+    
     setFormState(false);
   };
 
-  const openForm = () => {
-    setFormState(true);
-  };
+  const openForm = () => setFormState(true);
 
-  const closeForm = () => {
-    setFormState(false);
-  };
+  const closeForm = () => setFormState(false);
 
 
   return (
