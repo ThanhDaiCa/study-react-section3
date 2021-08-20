@@ -15,7 +15,7 @@ const ExpenseItem = (props) => {
         <h2>{props.title}</h2>
         <div className='expense-item__price'>${props.amount}</div>
       </div>
-      <input type='hidden' value={props.id}/>
+      <input type='hidden' value={props.key}/>
     </Card>
   );
 }
