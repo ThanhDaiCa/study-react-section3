@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import ExpensesList from "./ExpensesList";
 import ExpensesFilter from "./ExpensesFilter";
-import ExpensesChart from './ExpensesChart';
+import ExpensesChart from "./ExpensesChart";
 
 import Card from "../UI/Card";
 import "./Expenses.css";
@@ -13,26 +13,24 @@ const Expenses = (props) => {
   const filterChangeHandler = (selectYear) => setFilteredYear(selectYear);
 
   const filterItemsList = [];
+  const filteredExpensesChart = [];
   if (filteredYear === "ALL") {
-    props.items.forEach(function (expense) {
+    props.items.forEach((expense) => {
       filterItemsList.push(expense);
+      filteredExpensesChart.push(expense);
     });
   } else {
     props.items.forEach(function (expense) {
       if (expense.date.getFullYear().toString() === filteredYear) {
         filterItemsList.push(expense);
+        filteredExpensesChart.push(expense);
       }
     });
   }
 
-  const filteredExpensesChart = props.items.filter((expense) => {
-    return expense.date.getFullYear().toString() === filteredYear;
-  });
-
   return (
     <div>
       <Card className="expenses">
-      
         <ExpensesFilter
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
@@ -40,10 +38,7 @@ const Expenses = (props) => {
 
         <ExpensesChart expenses={filteredExpensesChart} />
 
-        <ExpensesList
-          items = {filterItemsList}
-        />
-
+        <ExpensesList items={filterItemsList} />
       </Card>
     </div>
   );
